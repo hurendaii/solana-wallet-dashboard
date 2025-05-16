@@ -13,8 +13,13 @@ function App() {
         setBalance(null);
         return;
       }
-      const bal = await connection.getBalance(publicKey);
-      setBalance(bal / 1e9); // lamports to SOL
+      try {
+        const bal = await connection.getBalance(publicKey);
+        setBalance(bal / 1e9); // Convert lamports to SOL
+      } catch (error) {
+        console.error("Failed to fetch balance:", error);
+        setBalance(null);
+      }
     };
 
     fetchBalance();
