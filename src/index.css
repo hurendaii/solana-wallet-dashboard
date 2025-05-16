@@ -1,4 +1,4 @@
-/**@config "tailwind.config.js";**/
+@config "tailwind.config.js";
 @import "tailwindcss";  
 
 :root {
@@ -26,12 +26,13 @@ a:hover {
 }
 
 body {
-  margin: 0;
   display: flex;
-  place-items: center;
-  min-width: 320px;
+  justify-content: center; /* horizontal center */
+  align-items: center;     /* vertical center */
   min-height: 100vh;
+  margin: 0;
 }
+
 
 h1 {
   font-size: 3.2em;

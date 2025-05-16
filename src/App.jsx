@@ -65,39 +65,44 @@ function App() {
   }, [publicKey, connection]);
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <h1 className="text-xl font-bold mb-4">Solana Wallet Dashboard</h1>
-      <WalletMultiButton />
-
-      {publicKey && (
-        <div className="mt-6">
-          <p className="break-all mb-2">
-            <strong>Public Key:</strong> {publicKey.toBase58()}
-          </p>
-          <p>
-            <strong>SOL Balance:</strong> {balance === null ? 'Loading...' : `${balance} SOL`}
-          </p>
+    <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
+      <div className="container max-w-xl p-6 bg-gray-800 rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold mb-6 text-center">Solana Wallet Dashboard</h1>
+        <div className="flex justify-center mb-6">
+          <WalletMultiButton />
         </div>
-      )}
 
-      {publicKey && (
-        <div className="mt-4">
-          <h2 className="font-semibold mb-2">SPL Tokens:</h2>
-          {tokens.length > 0 ? (
-            <ul className="list-disc list-inside">
-              {tokens.map((token, idx) => (
-                <li key={idx}>
-                  Mint: {token.mint} — Balance: {token.amount}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p className="text-gray-500 italic">You have no tokens associated with this account.</p>
-          )}
-        </div>
-      )}
+        {publicKey && (
+          <div className="mb-6 text-left">
+            <p className="break-all mb-2">
+              <strong>Public Key:</strong> {publicKey.toBase58()}
+            </p>
+            <p>
+              <strong>SOL Balance:</strong> {balance === null ? 'Loading...' : `${balance} SOL`}
+            </p>
+          </div>
+        )}
+
+        {publicKey && (
+          <div className="text-left">
+            <h2 className="font-semibold mb-2">SPL Tokens:</h2>
+            {tokens.length > 0 ? (
+              <ul className="list-disc list-inside">
+                {tokens.map((token, idx) => (
+                  <li key={idx}>
+                    Mint: {token.mint} — Balance: {token.amount}
+                  </li>
+                ))}
+              </ul>
+            ) : (
+              <p className="text-gray-500 italic">You have no tokens associated with this account.</p>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
+
 }
 
 export default App;
